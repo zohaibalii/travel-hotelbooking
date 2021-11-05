@@ -1,0 +1,593 @@
+{% extends "layout.html" %} {% block body %}
+<div class="container">
+
+
+    <div class="cd-slider">
+        <ul>
+            {% for data in slider %}
+            <li>
+                <div class="image" style="background-image:url(static/images/{{data[3]}});"></div>
+                <div class="content">
+                    <h2 class="home-slider-text-1">{{data[1]}}
+                    </h2>
+                    <p class="home-slider-text-2">
+                        {{data[2]}}
+
+
+                    </p>
+                    <button class="slider-btn-1">Come Join Us<i class="fa fa-chevron-right slider-icon-right-1"></i></button>
+
+
+
+                </div>
+            </li>
+            {% endfor %}
+            <!-- <li>
+                <div class="image" style="background-image:url(static/img/female.jpg);"></div>
+                <div class="content">
+                    <h2 class="home-slider-text-1">Last minute all inclusive deals
+                    </h2>
+                    <p class="home-slider-text-2">
+                        Courage of our questions star stuff harvesting star light shores of the cosmic ocean extraordinary claims require extraordinary evidence white dwarf vastness is bearable only through love.
+                    </p>
+                    <button class="slider-btn-1">Come Join Us<i class="fa fa-chevron-right slider-icon-right-1"></i></button>
+
+
+
+                </div>
+
+    </div>
+    </li> -->
+            <!-- 
+      <li>
+        <div class="image" style="background-image:url(https://images.unsplash.com/photo-1416838375725-e834a83f62b7?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1000);"></div>
+        <div class="content">
+          <h2>Winter Shoes</h2>
+          <a href="#">View Gallery</a>
+        </div>
+      </li>
+      <li>
+        <div class="image" style="background-image:url(https://images.unsplash.com/35/JOd4DPGLThifgf38Lpgj_IMG.jpg?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1000);"></div>
+        <div class="content">
+          <h2>Winter Collection 2017</h2>
+          <a href="#">View Gallery</a>
+        </div>
+      </li>
+      <li>
+        <div class="image" style="background-image:url(https://images.unsplash.com/photo-1453974336165-b5c58464f1ed?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1000);"></div>
+        <div class="content">
+          <h2>Summer Collection</h2>
+          <a href="#">View Gallery</a>
+        </div>
+      </li> -->
+        </ul>
+    </div>
+    <!--/.cd-slider-->
+
+</div>
+
+
+<div class="home-bg-2 pt-3 pb-3">
+    <form method="get" action="/hotelsearch" enctype="multipart/form-data">
+        <div class="container">
+            <p class="home-bg-2-text-1">
+                Where do you want to go ?</p>
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <p class="mb-2 mt-1">Country</p>
+
+                    <select class="form-control home-input-" name="country" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>
+                            <option selected disabled>Select Country</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}
+                          </select>
+                    <p class="mb-2 mt-3">City</p>
+
+                    <select class="form-control home-input-1 " name="city" id="categorynamenew" ; onchange="updatefilghts(this.value)" aria-label="Default select example " required>
+
+                                <option selected disabled>Select City</option>
+                              </select>
+
+
+
+                </div>
+                <div class="col-sm-4">
+
+                    <p class="mb-2 mt-1">Departure</p>
+                    <input type="date" id="txtDate" name="date" class="form-control home-input-1">
+
+
+                    <p class="mb-2 mt-3"> Where do you want to start from ?</p>
+
+                    <select class="form-control home-input-1" name="flight" id="flight" aria-label="Default select example" required>
+                        <option selected disabled>Select flight</option>
+
+                      </select>
+
+
+                </div>
+
+
+
+                <div class="col-sm-4">
+                    <p class="mb-2 mt-1"> Persons</p>
+
+                    <input id="persons" name="person" class="form-control home-input-1 mb-3 " type="text">
+
+
+                    <button type="submit" class="home-btn-1 float-right" onclick="search()"> Search</button>
+
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<!--<form method="POST" action="/search" enctype="multipart/form-data">-->
+
+
+<!--    <div class="row mt-1" style="margin-left:5px ;">-->
+<!--        <div class="col">-->
+
+<!--            <select class="form-control col" name="country" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>-->
+<!--                            <option selected>Country</option>-->
+<!--                            {% for i in data %}-->
+<!--                            <option value="{{i[0]}} ">{{i[1]}}</option>-->
+<!--                            {% endfor %}-->
+<!--                          </select>-->
+<!--        </div>-->
+
+<!--        <div class="col ">-->
+<!--            <select class="form-control col " name="city" id="categorynamenew" ; onchange="updatefilghts(this.value)" aria-label="Default select example " required>-->
+
+<!--                                <option selected> City</option>-->
+
+
+
+<!--                              </select>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="row mt-1 " style="margin-left:5px ; ">-->
+<!--        <div class="col-sm-12 ">-->
+<!--            <input name="departure" type="date" id="departure" class="form-control " placeholder="departure" required>-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+
+
+<!--    <div class="row mt-1 " style="margin-left:5px ; ">-->
+<!--        <div class="col ">-->
+<!--            <input id="persons" name="person" type="text" multiple class="form-control " placeholder="persons" required>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="col">-->
+
+<!--        <select class="form-control col" name="flight" id="flight" aria-label="Default select example" required>-->
+<!--                        <option selected>flight</option>-->
+
+<!--                      </select>-->
+<!--    </div>-->
+
+
+<!--    <button type="button" class="btn btn-outline-danger" onclick="search()">search</button>-->
+
+<!--</form>-->
+
+
+
+
+
+
+
+
+
+<!--<div class="home-bg-3">-->
+<!--    <p class="home-heading-1">Explore our top offers-->
+<!--    </p>-->
+
+
+<!--    <div class="container">-->
+
+<!--        <div class="row">-->
+<!--            <section class="col-sm-8">-->
+
+<!--                &lt;!&ndash;  offer div start&ndash;&gt;-->
+
+
+<!--                {% for data in pakages %}-->
+<!--                <div class="home-box-1">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-sm-3">-->
+<!--                            <div class="span-div-1">-->
+<!--                                <span class="span-label-tag">{{data[4]}}</span>-->
+
+<!--                            </div>-->
+<!--                            <img src="../static/images/{{data[6]}}" class="img-fluid">-->
+<!--                        </div>-->
+
+<!--                        <div class="col-sm-6">-->
+<!--                            <p class="home-box-1-text-1"> {{data[3]}}}-->
+<!--                                <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star"></span>-->
+<!--                                <span class="fa fa-star"></span>-->
+<!--                            </p>-->
+<!--                            <small>{{data[2]}}, {{data[1]}}</small>-->
+<!--                            <div class="home-box-1-des">-->
+<!--                                <p class="mb-0"><i class="fa fa-calendar"></i> {{data[7]}}</p>-->
+<!--                                <p class="mb-0"><i class="fa fa-plane"></i> London Luton</p>-->
+
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-3">-->
+<!--                            <div class="home-box-border-left">-->
+<!--                                <p class="mb-0">From </p>-->
+<!--                                <p class="mb-0 font-weight-bold">$ {{data[5]}}</p>-->
+<!--                                <button class=" home-box-btn-1">Book Now</button>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <i class="fas fa-plane-departure"></i>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;  offer div End&ndash;&gt;-->
+<!--                {% endfor %}-->
+
+
+
+
+
+
+
+<!--            </section>-->
+<!--            <section class="col-sm-4">-->
+
+<!--                &lt;!&ndash;home-box-right code start&ndash;&gt;-->
+<!--                {% for data in pakages %}-->
+
+<!--                <div class="home-box-right-1">-->
+<!--                    <div class="span-div-1">-->
+<!--                        <span class="span-label-tag"></span>-->
+<!--                    </div>-->
+<!--                    <div class="home-box-1-right-img-1">-->
+<!--                        <div class="home-box-right-span-1">-->
+<!--                            <p class="mb-0"> {{data[3]}} <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star"></span>-->
+<!--                                <span class="fa fa-star"></span> </p>-->
+<!--                            <p class="mb-0">From<b> {{data[5]}} </b> </p>-->
+<!--                            <div class="mb-0">-->
+<!--                                <p class="mb-0"><i class="fa fa-calendar"></i> {{data[7]}} , All Inclusive</p>-->
+<!--                                <p class="mb-0"><i class="fa fa-plane"></i> London Luton</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash;home-box-right code end&ndash;&gt;-->
+<!--                {% endfor %}-->
+
+
+<!--                &lt;!&ndash;home-box-right code start&ndash;&gt;-->
+
+<!--                <div class="home-box-right-1">-->
+<!--                    <div class="span-div-1">-->
+<!--                        <span class="span-label-tag">New</span>-->
+<!--                    </div>-->
+<!--                    <div class="home-box-1-right-img-1">-->
+<!--                        <div class="home-box-right-span-1">-->
+<!--                            <p class="mb-0"> Acacia Marina <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star checked"></span>-->
+<!--                                <span class="fa fa-star"></span>-->
+<!--                                <span class="fa fa-star"></span> </p>-->
+<!--                            <p class="mb-0">From<b> $ 830</b> </p>-->
+<!--                            <div class="mb-0">-->
+<!--                                <p class="mb-0"><i class="fa fa-calendar"></i> 8 days/7 nights, All Inclusive</p>-->
+<!--                                <p class="mb-0"><i class="fa fa-plane"></i> London Luton</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash;home-box-right code end&ndash;&gt;-->
+
+
+
+
+<!--            </section>-->
+
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+
+<div class="home-bg-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="static/img/candy.jpg" class="img-fluid">
+            </div>
+            <div class="col-sm-6">
+                <p class="home-bg-4-text-1">
+                    Pack your bags</p>
+
+                <div class="home-bg-4-div-1">
+                    <p class="home-bg-4-text-2">
+                        Birth a mote of dust suspended in a sunbeam Cambrian explosion invent the universe bits of moving fluff venture? Courage of our questions paroxysm of global death shores of the cosmic ocean from which we spring vanquish the impossible white dwarf.</p>
+
+                    <a href="package.html" class="link-1">
+
+                        <button class="home-bg-4-btn-1">View Best Deals</button>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6">
+                <div class="home-bg-4-div-2">
+                    <p class="home-bg-4-div-2-text-1">LAST MINUTE OFFERS
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <img src="static/img/female.jpg" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <p class="home-heading-1">Destinations
+    </p>
+    <div class="row">
+        {% for i in data %} {% if loop.index
+        <=6 %} <div class="col-sm-4 mb-3  " onclick="viewchannel({{i[0]}})">
+            <div class="border ">
+                <span>
+                <span class="home-name-tag">{{i[1]}}</span>
+
+
+                <img src="../static/images/{% if i[7].split(',')[0] == '' %}{{i[7].split(',')[1]}}{%else%}{{i[7].split(',')[0]}}{%endif%}" class="img-fluid country-img-1">
+                </span>
+                {# <button class="btn btn-outline-danger mx-auto d-block mt-2">Book Now</button> #}
+                <!--        <button class="package-box-btn-1" >Check detail</button>-->
+
+
+
+            </div>
+    </div>
+
+    {%endif%} {% endfor %}
+
+</div>
+<a href="/alldestinations" class="link-1">
+    <button class="home-bg-4-btn-2 mx-auto d-block">View All</button>
+</a>
+
+</div>
+
+
+<div class="home-bg-7">
+    <div class="container">
+        <div class="row">
+
+            <div class="col">
+                <div class="home-bg-icon-div-1">
+                    <i class="fa fa-heart home-bg-icon-1"></i>
+                </div>
+                <p class="home-bg-7-text-1">
+                    Passionate Service</p>
+                <p class="home-bg-7-text-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+
+            <div class="col">
+                <div class="home-bg-icon-div-1">
+                    <i class="fa fa-money home-bg-icon-1"></i>
+                </div>
+                <p class="home-bg-7-text-1">
+                    Best Price Guarantee</p>
+                <p class="home-bg-7-text-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+
+            <div class="col">
+                <div class="home-bg-icon-div-1">
+                    <i class="fa fa-map home-bg-icon-1"></i>
+                </div>
+                <p class="home-bg-7-text-1">
+                    Handpicked Deals</p>
+                <p class="home-bg-7-text-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+
+
+            <div class="col">
+                <div class="home-bg-icon-div-1">
+                    <i class="fa fa-thumbs-up home-bg-icon-1"></i>
+                </div>
+                <p class="home-bg-7-text-1">
+                    Detailed Descriptions</p>
+                <p class="home-bg-7-text-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+
+
+            <div class="col">
+                <div class="home-bg-icon-div-1">
+                    <i class="fa fa-calendar home-bg-icon-1"></i>
+                </div>
+                <p class="home-bg-7-text-1">
+                    Secure Booking
+                </p>
+                <p class="home-bg-7-text-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+{#
+<div class="home-bg-8">
+    <div class="container">
+
+        <div class="home-bg-8-div-1">
+            <p class="home-bg-8-text-1">
+                Your trusted travel partner</p>
+            <p class="home-bg-8-text-2">
+                Book Your Travel - Online Booking WordPress Theme. It Doesn't Get Better Than This.
+            </p>
+            <button class="home-bg-8-btn-1">
+GET STARTED NOW</button>
+        </div>
+
+
+
+
+    </div>
+</div> #} {% endblock %} {% block script %}
+
+
+
+<script>
+    function viewchannel(id) {
+
+        console.log(id);
+
+        var id = id.toString();
+        var date = new Date();
+        date.setTime(date.getTime() + (1 * 1 * 60 * 60 * 1000));
+        document.cookie = "id = " + id + "; expires=" + date.toGMTString();
+        window.location.href = "/country-detail";
+    }
+</script>
+
+
+<script>
+    function changeSubCategory(id) {
+        removeAll(document.getElementById("categorynamenew"));
+        var option = document.createElement("option");
+        option.text = "Select Subcategory";
+        option.value = "";
+        var select = document.getElementById("categorynamenew");
+        select.appendChild(option);
+
+
+        var catid = id;
+
+        {% for i in subcat %}
+        if (catid == {{i[2]}})
+         {
+            var option = document.createElement("option");
+            option.text = "{{i[1]}}";
+            option.value = "{{i[0]}}";
+            var select = document.getElementById("categorynamenew");
+            select.appendChild(option);
+
+        } {% endfor %}
+        }
+
+    function removeAll(selectBox) {
+        while (selectBox.options.length > 0) {
+            selectBox.remove(0);
+        }
+    }
+</script>
+
+
+
+<script>
+    function hotelsearch(id) {
+        alert("hello word");
+        console.log(id);
+        var id = id.toString();
+        var date = new Date();
+        date.setTime(date.getTime() + (1 * 1 * 60 * 60 * 1000));
+        document.cookie = "id = " + id + "; expires=" + date.toGMTString();
+        window.location.href = "/hotelsearch";
+    }
+
+    function search() {
+        var country = document.getElementById("category").value;
+        var city = document.getElementById("categorynamenew").value;
+        var persons = document.getElementById("persons").value;
+        var flight = document.getElementById("flight").value;
+        var departure = document.getElementById("departure").value;
+        var arrival = document.getElementById("arrival").value;
+
+        window.location.href = "/hotelsearch?country=" + country + "&city=" + city + "&persons=" + persons + "&flight=" + flight;
+
+    }
+
+    function updatefilghts(value) {
+        removeAll(document.getElementById("flight"));
+        var option = document.createElement("option");
+        option.text = "Select Flight";
+        option.value = "";
+        var select = document.getElementById("flight");
+        select.appendChild(option);
+
+        var catvalue = value;
+
+
+        {% for i in package %}
+        if (catvalue == {
+                {i[13]}}) {
+            var option = document.createElement("option");
+            option.text = "{{i[14]}}";
+            option.value = "{{i[13]}}";
+            var select = document.getElementById("flight");
+            select.appendChild(option);
+
+        } {% endfor %}
+    }
+</script>
+
+
+<script>
+    $(function() {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+        $('#txtDate').attr('min', maxDate);
+    });
+</script>
+
+
+
+{% endblock %}

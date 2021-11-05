@@ -1,0 +1,92 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="home-bg-3">
+
+
+    <div class="container ">
+
+<p class="pt-3  country-heading-1">All Packages </p>
+
+
+<div class="row pt-3">
+
+    {% for data in package %}
+            <!-- package code start-->
+<div class="col-sm-3">
+<div class="home-box-right-1">
+  <div class="card">
+  <div class="card-body px-0 py-0">
+      <div class="packages-span-div-1"><span class="packages-span-label-tag">New</span></div>
+        <div class="home-box-1-right-img-1" style="background-image: url(../static/images/{{data[13]}});"> </div>
+<div class="container">
+
+<p class="new-custom-text-1 more-text-1">  {{data[9]}}
+
+     </p>
+
+<p class="home-box-1-text-1 more-text-1"> Per Person {{data[12]}}
+
+     </p>
+
+
+
+     <small  class="more-text-1">{{data[2]}} To {{data[15]}}</small>
+
+
+
+
+
+<div class="packages-box-1-des">
+
+    <p class="home-box-1-text-1 more-text-1"> The Price Includes 
+    
+     </p>
+ 
+  
+
+    <ul class="mt-1">
+                         <li class="user-details-li-1">Room: </li>
+                         <li class="user-details-li-1">Flight: </li>
+                         <li class="user-details-li-1">Living Rooms: </li>
+                         <li class="user-details-li-1">Transfer: </li>
+                         <li class="user-details-li-1">Visa: </li>
+                         <li class="user-details-li-1">Insurance: </li>
+                         <li class="user-details-li-1">Lunch, Breakfast, Dinner: </li>
+                        </ul>
+
+      </div>
+
+<button class="package-box-btn-1" onclick="viewchannel({{data[0]}})">Check detail</button>
+
+</div>
+
+</div></div></div>
+
+</div>
+
+
+
+{%endfor%}
+
+
+</div></div>
+</div>
+
+
+
+{% endblock %}
+{% block script %}
+        <script>
+            function viewchannel(id) {
+
+                console.log(id);
+
+                var id = id.toString();
+                var date = new Date();
+                date.setTime(date.getTime() + (1 * 1 * 60 * 60 * 1000));
+                document.cookie = "id = " + id + "; expires=" + date.toGMTString();
+                window.location.href = "/user-hotel-detail";
+            }
+        </script>
+
+{% endblock %}

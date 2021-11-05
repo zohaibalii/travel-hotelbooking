@@ -1,0 +1,91 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+<!-- End of Topbar -->
+
+
+<section class="content-wrapper">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- Page Heading -->
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">New Category</h1>
+                {% if error|length > 1 %}
+                <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-danger">Alert </span> {{ error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endif %} {% if message|length > 1 %}
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-success">Alert </span> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endif %}
+                <div class="card">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">DataTable with default features</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row"></div>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Country Name</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for i in country %}
+                                    <tr>
+                                        <td>{{i[1]}}</td>
+
+                                        <td><a href="/edit-airport-city?id={{i[0]}}"><button class="btn btn-outline-danger">Edit</button></a></td>
+
+                                        <td>
+                                            <form action='/airport-city-delete?id={{i[0]}}' method="post">
+                                                <a href=""><button class="btn btn-outline-danger">Delete</button></a>
+
+                                            </form>
+                                        </td>
+
+
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+
+                                </tfoot>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+            </div>
+
+            <!-- /.card -->
+        </div>
+    </div>
+    </div>
+</section>
+</form>
+
+
+
+<!-- /.container-fluid -->
+
+{%endblock%}

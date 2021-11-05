@@ -1,0 +1,75 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+<!-- End of Topbar -->
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+Country List
+</p>
+
+
+                {% if error|length > 1 %}
+                <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-danger">Alert </span> {{ error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endif %} {% if message|length > 1 %}
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-success">Alert </span> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endif %}
+                <div class="card">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row"></div>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Country Name</th>
+                                        <th>Description</th>
+                                        <th>Visa requirements</th>
+                                        <th>language</th>
+                                        <th>Currency</th>
+                                        <th>Area</th>
+                                        
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for i in country %}
+                                    <tr>
+                                        <td>{{i[1]}}</td>
+                                        <td>{{i[2]}}</td>
+                                        <td>{{i[3]}}</td>
+                                        <td>{{i[4]}}</td>
+                                        <td>{{i[5]}}</td>
+                                        <td>{{i[6]}}</td>
+                                       
+
+                                          
+
+        
+
+
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                </div>
+</div></div></div>
+
+
+<!-- /.container-fluid -->
+
+{%endblock%}

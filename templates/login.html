@@ -1,0 +1,43 @@
+<head>
+
+    <link rel="stylesheet" href="static/plugins/login.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<div class="container ">
+
+    {% if error != "" %}
+    <div class="alert alert-danger text-center mt-5" role="alert">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+       <section class="header-1">
+          <div class="row">
+              <div class="col-12">
+              <div class="logo">
+                  <img src="../static/img/logo.png" class="img-fluid" alt="">
+              </div>
+            </div>
+            <div class="col-12">
+                <div class="form">
+                <h4 class="h4-form"> Welcome Back</h4>
+
+
+
+                <form method="POST">
+
+                            <input type="text" name="username" class="form-control  inp1" id="exampleInputEmail1" placeholder="User Name">
+
+                            <input type="password" name="password" class="form-control inp1" id="exampleInputPassword1" placeholder="Password">
+
+                    <!-- /.card-body -->
+
+                        <button type="submit" class="login-btn btn btn-dark">Submit</button>
+
+                </form>
+                </div>
+            </div>
+          </div></section></div>

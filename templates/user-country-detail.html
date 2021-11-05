@@ -1,0 +1,393 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="home-bg-3">
+
+
+    <div class="container ">
+        
+<p class="pt-3  country-heading-1">{{data[1]}}</p>
+
+
+
+
+        <div class="row pt-4">
+
+            <section class="col-sm-9">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        {% for img in hotelImages %}
+                        {%if loop.index > 1 and loop.index < 3 %}
+                        <div class="carousel-item  active">
+                            <img class="d-block w-100" src="../static/images/{{img}}" alt="First slide">
+                    </div>
+                    {%else%}
+                    <div class="carousel-item ">
+                        <img class="d-block w-100" src="../static/images/{{img}}" alt="testng slide">
+                    </div>
+                    {%endif%} {% endfor %}
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+        </div>
+
+
+
+
+
+        <div class="row mt-5">
+            <div class="col-sm-3 ">
+                <ul class="nav nav-tabs package-details-tabs" id="myTab" role="tablist">
+                    <li class="nav-item package-details-nav-link-1 ">
+                        <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">General Information</a>
+                    </li>
+                    <li class="nav-item package-details-nav-link-1 ">
+
+                        <a class="nav-link " data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Accommodation</a>
+                    </li>
+                    <li class="nav-item package-details-nav-link-1 ">
+                        <a class="nav-link " data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Tour</a>
+                    </li>
+<!--                    <li class="nav-item package-details-nav-link-1 ">-->
+<!--                        <a class="nav-link " data-toggle="tab" href="#settings" role="tab" aria-controls="settings">Settings</a>-->
+<!--                    </li>-->
+                </ul>
+            </div>
+
+            <div class="col-sm-9">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home" role="tabpanel">
+                        {{data[2]}}
+                        <table class="table mt-3">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Visa Requirements</th>
+         <td>{{data[3]}}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">language Spoken</th>
+      <td>{{data[4]}}</td>
+     
+    </tr>
+    <tr>
+      <th scope="row">Currency Used</th>
+      <td>{{data[5]}}</td>
+    
+    </tr>
+    <tr>
+      <th scope="row">Area (km2)</th>
+      <td>{{data[6]}}</td>
+    
+    </tr>
+        <tr>
+
+      <th scope="row">Country Name</th>
+      <td>{{data[1]}}</td>
+        </tr></tbody></table>
+
+                    </div>
+                    <div class="tab-pane" id="profile" role="tabpanel">
+                    
+                    <div class="row">
+                    <!-- package code start-->
+                        {% for data in package %}
+                                {% if loop.index <= 4 %}
+
+            <!-- package code start-->
+<div class="col-sm-6">
+<div class="home-box-right-1">
+  <div class="card">
+  <div class="card-body px-0 py-0">
+      <div class="packages-span-div-1"><span class="packages-span-label-tag">New</span></div>
+        <div class="home-box-1-right-img-1" style="background-image: url(../static/images/{{data[13]}});"> </div>
+<div class="container">
+
+<p class="new-custom-text-1 more-text-1">  {{data[9]}}
+    
+     </p>
+
+<p class="home-box-1-text-1 more-text-1"> Per Person {{data[12]}}
+    
+     </p>
+
+    
+
+     <small  class="more-text-1">{{data[2]}} To {{data[15]}}</small>
+
+
+
+
+
+<div class="packages-box-1-des">
+
+    <p class="home-box-1-text-1 more-text-1"> The Price Includes 
+    
+     </p>
+ 
+
+    <ul class="mt-1">
+                         <li class="user-details-li-1">Room: </li>
+                         <li class="user-details-li-1">Flight: </li>
+                         <li class="user-details-li-1">Living Rooms: </li>
+                         <li class="user-details-li-1">Transfer: </li>
+                         <li class="user-details-li-1">Visa: </li>
+                         <li class="user-details-li-1">Insurance: </li>
+                         <li class="user-details-li-1">Lunch, Breakfast, Dinner: </li>
+                        </ul>
+
+
+
+      </div>
+
+<button class="package-box-btn-1" onclick="viewchannel({{data[0]}})">Check detail</button>
+
+</div>
+
+</div></div></div>
+
+</div>
+
+{%endif%}
+
+{%endfor%}
+            
+                        <!-- package code end-->
+
+
+                    
+                    </div>
+                     <a href="/view-country-detail" class="link-1">
+                        <button class="home-bg-4-btn-2 mx-auto d-block">View All</button>
+                    </a>
+
+                    
+                    </div>
+                    <div class="tab-pane" id="messages" role="tabpanel">
+
+                     
+                    
+                    <div class="row">
+                    <!-- package code start-->
+                        {% for i in tour %}
+                        <div class="col-sm-6">
+                            <div class="home-box-right-1">
+                                <div class="card">
+  <div class="card-body px-0 py-0">
+      <div class="packages-span-div-1"><span class="packages-span-label-tag">New</span></div>
+        <div class="home-box-1-right-img-1" style="background-image: url(../static/images/{% if i[5].split(',')[0] == '' %}{{i[5].split(',')[1]}}{%else%}{{i[5].split(',')[0]}}{%endif%});"> </div>
+<div class="container">
+   <p class="new-custom-text-1 more-text-1"> Person ${{i[4]}} </p>
+    <p class="home-box-1-text-1 more-text-1"> Duration {{i[3]}} </p>
+
+    <small  class="more-text-1">{{i[1]}} to {{i[2]}}</small>
+
+
+<div class="packages-box-1-des">
+
+    <p class="home-box-1-text-1 more-text-1"> The Price Includes 
+    
+     </p>
+ 
+
+    <ul class="mt-1">
+                         <li class="user-details-li-1">Room: </li>
+                         <li class="user-details-li-1">Flight: </li>
+                         <li class="user-details-li-1">Living Rooms: </li>
+                         <li class="user-details-li-1">Transfer: </li>
+                         <li class="user-details-li-1">Visa: </li>
+                         <li class="user-details-li-1">Insurance: </li>
+                         <li class="user-details-li-1">Lunch, Breakfast, Dinner: </li>
+                        </ul>
+
+      </div>
+
+
+<button class="package-box-btn-1" onclick="viewchannel2({{i[6]}})" >Check detail</button>
+
+</div>
+
+</div></div>
+                            </div></div>
+
+                                           
+            
+
+                        {% endfor %}
+   </div>
+
+                <a href="/viewalltour" class="link-1">
+                        <button class="home-bg-4-btn-2 mx-auto d-block">View All</button>
+                    </a>
+
+                    <div class="tab-pane" id="settings" role="tabpanel"></div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+</div></section>
+
+        <section class="col-sm-3">
+
+
+
+
+            <!-- package code start-->
+
+
+            {# <div class="home-box-right-1">
+                <div class="card">
+                    <div class="card-body px-0 py-0">
+                        <div class="container">
+                            <p class="package-details-heading-1"> {{hotel[8]}}</p>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <br>
+                            <p class="home-box-1-text-1"> Per Person {{hotel[13]}}
+
+                            </p>
+
+
+
+
+                            <small>{{hotel[3]}}, {{hotel[2]}}</small>
+
+                            <p class="mb-0 packages-box-text-1">The price includes
+                                <span class="mb-0 font-weight-bold"></span>
+                            </p>
+
+                            <div class="packages-box-1-des">
+                                <p class="mb-0"><i class="fa fa-calendar"></i> Rooms: {{hotel[10]}}</p>
+                                <p class="mb-0"><i class="fa fa-calendar"></i> Flight</p>
+                                <p class="mb-0"><i class="fa fa-plane"></i> Living Room</p>
+                                <p class="mb-0"><i class="fa fa-plane"></i> Transfer </p>
+                                <p class="mb-0"><i class="fa fa-plane"></i> Visa </p>
+                                <p class="mb-0"><i class="fa fa-plane"></i> Insurance </p>
+                                <p class="mb-0"><i class="fa fa-plane"></i> Lunch,Breakfast,Dinner </p>
+
+
+                            </div>
+
+
+                            <!-- 
+      <div class="tags-1 row d-flex">
+      	<div class="col"><span><li>Adults only</li></span></div>
+      	<div class="col"><span><li>All inclusive</li></span></div>
+      	<div class="col"><span><li>Summer 2020</li></span></div>
+      
+      
+
+      </div>
+ -->
+                            <a href="user-reg" class="link-1">
+                                <button class="package-details-box-btn-1">Book Now</button></a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div> #}
+            <!-- package code end-->
+
+            <div class="package-details-box-right-1">
+                <p class="package-details-box-right-1-text-1">
+                    Need help booking ?</p>
+                <p class="package-details-box-right-1-text-2">
+                    Call our customer services team on the number below to speak to one of our advisers who will help you with all of your holiday needs.
+                </p>
+
+                <p>
+                    <i class="fa fa-phone call-red-icon"></i>1-555-555-555
+
+                </p>
+            </div>
+
+
+
+
+
+
+            <div class="package-details-box-right-1">
+                <p class="package-details-box-right-1-text-1">
+                    Why book with us?</p>
+                <p class="package-details-box-right-1-text-2">
+                    <p class="package-details-red-txt-1">
+                        Best rates</p>
+                    <p class="package-details-box-right-1-text-5">
+                        Get the best rates, or get a refund. No booking fees. Save money!
+                    </p>
+                    <p class="package-details-red-txt-1">
+
+                        Largest Selection</p>
+                    <p class="package-details-box-right-1-text-5">
+                        140,000+ hotels worldwide 130+ airlines Over 3 million guest reviews</p>
+
+                    <p class="package-details-red-txt-1">
+                        We're Always Here</p>
+                    <p class="package-details-box-right-1-text-5">
+                        Call or email us, anytime Get 24-hour support before, during, and after your trip
+                    </p>
+
+            </div>
+
+
+        </section>
+
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function viewchannel(id) {
+
+        console.log(id);
+
+        var id = id.toString();
+        var date = new Date();
+        date.setTime(date.getTime() + (1 * 1 * 60 * 60 * 1000));
+        document.cookie = "id = " + id + "; expires=" + date.toGMTString();
+        window.location.href = "/user-hotel-detail";
+    }
+
+
+function viewchannel2(id) {
+
+        console.log(id);
+
+        var id = id.toString();
+        var date = new Date();
+        date.setTime(date.getTime() + (1 * 1 * 60 * 60 * 1000));
+        document.cookie = "id = " + id + "; expires=" + date.toGMTString();
+        window.location.href = "/user-tour-detail";
+    }
+
+
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+<!-- End of Topbar -->
+
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+Hotel Rooms</p>
+                <!-- Page Heading -->
+
+                {% if error|length > 1 %}
+                <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-danger">Alert </span> {{ error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endif %} {% if message|length > 1 %}
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-success">Alert </span> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endif %}
+
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row"></div>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Hotel Name</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Single Bed</th>
+                                        <th>Double Beds</th>
+                                        <th>Triple Beds</th>
+                                       
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for i in hotel %}
+                                    <tr>
+                                        <td>{{i[1]}}</td>
+
+                                       <td><a href="/edit-hotel?id={{i[0]}}"><button class="btn btn-outline-danger">Edit</button></a></td>
+
+
+                                        <td>
+                    <form action='/delete-hotel?id={{i[0]}}' method="post">
+                        <a href=""><button class="btn btn-outline-danger">Delete</button></a>
+
+                    </form>
+                </td>
+
+                <td><a href="/hotel-view?id={{i[0]}}"><button class="btn btn-outline-danger">view</button></a></td>
+
+                <td><a href="/hotel-view2?id={{i[0]}}"><button class="btn btn-outline-danger">view</button></a></td>
+                <td><a href="/hotel-view3?id={{i[0]}}"><button class="btn btn-outline-danger">view</button></a></td>
+
+
+
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+</div>
+</div>
+</div>
+
+
+
+{%endblock%}

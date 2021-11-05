@@ -1,0 +1,98 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+Edit Hotel
+</p>
+
+
+
+    <form method="POST" action="/edit-hotel" enctype="multipart/form-data">
+
+                <input name="sno" type="sno" value="{{varr[0]}}" class="form-control "  hidden>
+
+        <div class="row mt-1">
+            <div class="col-sm-6 mb-2">
+                <label>Country</label>
+                <select class="form-control col" name="category" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>
+                            <option selected>Country</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}
+                          </select>
+<!--                      <select name="category" class="custom-select"  id="category"  onchange="changeSubCategory(this.value);" required>-->
+<!--                          {%for value in data %}-->
+<!--                      <option value="{{value[0]}}" name="category" {%if value == selectvalue%}selected{%endif%}>{{value[1]}}</option>-->
+<!--                          {%endfor%}-->
+<!--                      </select>-->
+
+            </div>
+
+            <div class="col-sm-6 mb-2">
+                                <label>City</label>
+                <select class="form-control col " name="scategory" id="categorynamenew" ; aria-label="Default select example " required>
+                           
+                                <option selected> City</option>
+                                
+                                
+                               
+                              </select>
+            </div>
+
+            <div class="col-sm-6 mb-2">
+                                <label>Hotel Name</label>
+                <input name="hotelname" value="{{varr[3]}}" type="text" class="form-control " placeholder="hotel name " required>
+            </div>
+
+            <div class="col-sm-6 mb-2">
+                                <label>Room</label>
+                <input name="rooms" value="{{varr[4]}}" type="text" class="form-control " placeholder="rooms" required>
+            </div>
+
+                <div class="col-sm-6 mb-2">
+                <label>Image</label>
+                <input name="image" type="file" class="form-control " placeholder="image" required>
+            </div>
+
+               <div class="col-sm-6 mb-2">
+
+            <button type="submit " class="mt-2 dashboard-btn-1 mx-auto d-block">Update Hotel</button>
+
+               </div>
+        </div>
+    </form>
+
+</div></div></div>
+
+    {% endblock %} {% block script %}
+    <script>
+        function changeSubCategory(id) {
+            removeAll(document.getElementById("categorynamenew"));
+            var option = document.createElement("option");
+            option.text = "Select Subcategory";
+            option.value = "";
+            var select = document.getElementById("categorynamenew");
+            select.appendChild(option);
+
+
+            var catid = id;
+
+            {% for i in subcat %}
+            if (catid == {{i[2]}}) {
+                var option = document.createElement("option");
+                option.text = "{{i[1] }}";
+                option.value = "{{i[0]}}";
+                var select = document.getElementById("categorynamenew");
+                select.appendChild(option);
+
+            } {% endfor %}}
+
+        function removeAll(selectBox) {
+            while (selectBox.options.length > 0) {
+                selectBox.remove(0);
+            }
+        }
+    </script>
+    {% endblock %}

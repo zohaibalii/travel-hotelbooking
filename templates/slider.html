@@ -1,0 +1,48 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="content-wrapper">
+
+    <div class="col-sm-9 text-white ">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+
+
+
+        <div class="alert alert-secondary mt-3 text-center" role="alert">
+            Add New Slide
+        </div>
+
+
+
+        <form method="POST" action="/add-slider" enctype="multipart/form-data">
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col ">
+                    <input name="title" type="text" class="form-control " placeholder="Add Title" required>
+                </div>
+                <div class="col ">
+                    <input name="des" type="text" class="form-control " placeholder="Discribtion" required>
+                </div>
+            </div>
+
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col ">
+                    <input name="img" type="file" class="form-control" placeholder="Image" required>
+                </div>
+
+            </div>
+
+            <button style="margin-left: 10px; " type="submit " class="mt-2 btn btn-secondary ">Add Product</button>
+        </form>
+
+
+
+
+    </div>
+
+    </form>
+    {% endblock %}

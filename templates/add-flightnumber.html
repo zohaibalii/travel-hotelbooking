@@ -1,0 +1,184 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="content-wrapper">
+
+    <div class="col-sm-9 text-white ">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+        <div class="alert alert-secondary mt-3 text-center" role="alert">
+            Add Flight Number
+        </div>
+
+
+
+        <form method="POST" action="/add-flight-number" enctype="multipart/form-data">
+
+
+            <div class="row mt-1" style="margin-left:5px ;">
+                <div class="col">
+
+                    <select class="form-control col" name="airportcountry" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>   
+                            <option selected>Country</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+        <div class="col ">
+            <select class="form-control col " name="airportcity" id="categorynamenew" ; onchange="updatefilghts(this.value)" aria-label="Default select example " required>
+             <option selected> City</option>
+                                
+            </select>
+        </div>
+            </div>
+
+
+            <div class="col">
+
+        <select class="form-control col" name="airport" id="flight"; onchange="updatefilghtsname(this.value)" aria-label="Default select example" required>   
+                        <option selected>airport</option>
+                         
+                      </select>
+    </div>
+
+    <div class="col">
+
+        <select class="form-control col" name="flightname" id="flightname";  aria-label="Default select example" required>   
+                        <option selected>flight name</option>
+                         
+                      </select>
+    </div>
+
+    <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col ">
+                    <input name="flightnumber" type="text" multiple class="form-control " placeholder="flightnumber" required>
+                </div>
+
+            </div>
+
+    
+
+    {# <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col ">
+                    <input name="flightname" type="text" multiple class="form-control " placeholder="flightname" required>
+                </div>
+
+            </div> #}
+
+           
+
+
+
+
+            
+
+            
+            
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+
+
+                <button style="margin-left: 10px; " type="submit " class="mt-2 btn btn-secondary ">Add Hotel</button>
+        </form>
+
+
+
+
+        </div>
+
+        </form>
+        {% endblock %} {% block script %}
+        <script>
+            function changeSubCategory(id) {
+                removeAll(document.getElementById("categorynamenew"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("categorynamenew");
+                select.appendChild(option);
+
+
+                var catid = id;
+
+                {% for i in subcat %}
+                if (catid == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("categorynamenew");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+            function removeAll(selectBox) {
+                while (selectBox.options.length > 0) {
+                    selectBox.remove(0);
+                }
+            }
+
+
+             function updatefilghts(value){
+                removeAll(document.getElementById("flight"));
+                var option = document.createElement("option");
+                option.text = "Select Flight";
+                option.value = "";
+                var select = document.getElementById("flight");
+                select.appendChild(option);
+
+                var catvalue = value;
+
+
+                {% for i in airportname %}
+                if(catvalue == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("flight");
+                    select.appendChild(option);
+
+                }
+                {% endfor %}}
+
+
+
+        function updatefilghtsname(value2){
+                removeAll(document.getElementById("flightname"));
+                var option = document.createElement("option");
+                option.text = "Select Flight";
+                option.value = "";
+                var select = document.getElementById("flightname");
+                select.appendChild(option);
+
+                var catvalue = value2;
+
+
+                {% for i in flightname %}
+                if(catvalue == {{i[3]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[4]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("flightname");
+                    select.appendChild(option);
+
+                }
+                {% endfor %}}
+
+
+       
+
+             
+
+
+
+
+
+           
+
+
+        </script>
+        {% endblock %}

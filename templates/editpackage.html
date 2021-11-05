@@ -1,0 +1,487 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="content-wrapper">
+
+    <div class="col-sm-9 text-white ">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+        <div class="alert alert-secondary mt-3 text-center" role="alert">
+             Add 7 Days Package
+        </div>
+
+
+
+        <form method="POST" action="/add-package" enctype="multipart/form-data">
+
+
+            <div class="row mt-1" style="margin-left:5px ;">
+
+             <div class="col-sm-12">
+        <label for="inputPassword4" class="form-label text-gray">flight date</label>
+            <input name="flightdate" type="date" class="form-control" placeholder="date" required>
+        </div>
+
+             
+
+
+
+                <div class="col">
+        <label for="inputPassword4" class="form-label text-gray">country</label>
+
+                    <select class="form-control col" name="country" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>   
+                            <option selected>Country</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+        <div class="col ">
+        <label for="inputPassword4" class="form-label text-gray">City</label>
+            <select class="form-control col " name="city" id="categorynamenew" ; onchange="updatefilghts(this.value)" aria-label="Default select example " required>
+             <option selected> City</option>
+                                
+            </select>
+        </div>
+            </div>
+
+
+            <div class="col">
+            
+            <label for="inputPassword4" class="form-label text-gray">Airport Name</label>
+
+        <select class="form-control col" name="airport" id="flight"; onchange="updatefilghtsname(this.value); updatedeparture(this.value);updatedprice(this.value)" aria-label="Default select example" required>   
+                        <option selected>Airport Name</option>
+                         
+                      </select>
+    </div>
+
+
+    
+
+
+
+
+    <div class="col">
+    <label for="inputPassword4" class="form-label text-gray">Flight Name</label>
+
+        <select class="form-control col" name="flightname" id="flightname"; onchange="updatefilghtsnumber(this.value)" aria-label="Default select example" required>   
+                        <option selected>Flight Name</option>
+                         
+                      </select>
+    </div>
+
+    <div class="col">
+    <label for="inputPassword4" class="form-label text-gray">Flight Number</label>
+
+        <select class="form-control col" name="flightnumber" id="flightnumber";  
+        onchange="departur(this.value)" aria-label="Default select example" required>   
+                        <option selected>Flight number</option>
+                         
+                      </select>
+    </div>
+
+
+
+     <div class="col">
+    <label for="inputPassword4" class="form-label text-gray">Departure Time</label>
+
+        <select class="form-control col" name="departuredate" id="departuredate";  
+         aria-label="Default select example" required type="text">   
+                        <option selected>departurdate</option>
+                         
+                      </select>
+    </div>
+
+
+     <div class="col">
+    <label for="inputPassword4" class="form-label text-gray">flight price</label>
+
+        <select class="form-control col" name="flightprice" id="price";  
+         aria-label="Default select example" required>   
+                        <option selected>price</option>
+                         
+                      </select>
+    </div>
+
+
+     <!-- <div class="col">
+    <label for="inputPassword4" class="form-label text-gray">Flight Price</label>
+
+        <select class="form-control col" name="airportcountry" id="category" aria-label="Default select example" required>   
+                            <option selected>flight price</option>
+                            {% for i in flight %}
+                            <option value="{{i[0]}} ">{{i[12]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div> -->
+    
+
+
+    
+
+
+    
+<div class="col">
+    <label for="inputPassword4" class="form-label text-gray">Arrival City</label>
+
+                    <select class="form-control col" name="arrivalcity" id="category" aria-label="Default select example" onchange="changehotel(this.value);" required>   
+                            <option selected>Arrival City</option>
+                            {% for i in subcat %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+                <div class="col">
+                    <label for="inputPassword4" class="form-label text-gray">hotel name</label>
+                    <select class="form-control col " name="hotel" id="hotel" ; onchange="changeprice(this.value); extracharge(this.value)" aria-label="Default select example" required>
+                           
+                                <option selected> hotel</option>
+                                
+                                
+                               
+                              </select>
+                </div>
+
+                <div class="col">
+                    <label for="inputPassword4" class="form-label text-gray">room type</label>
+
+                    <select class="form-control col" name="beds" id="category" aria-label="Default select example"  required>   
+                            <option selected>Room Type</option>
+                           
+                            <option>Single Bed</option>
+                            <option>Double Beds</option>
+                            <option>trouple Beds</option>
+                             
+                          </select>
+                </div>
+
+
+                <div class="col">
+                    <label for="inputPassword4" class="form-label text-gray">7 rooms price</label>
+                    <select class="form-control col " name="hotelprice" id="hotelprice" ; aria-label="Default select example" required>
+                           
+                                <option selected>Price</option>
+                                
+                                
+                               
+                              </select>
+                </div>
+
+                <div class="row mt-1" style="margin-left:5px ;">
+
+             <div class="col">
+                    <label for="inputPassword4" class="form-label text-gray">Extra Charges</label>
+                    <select class="form-control col " name="extracharges" id="extracharges" ; aria-label="Default select example" required>
+                           
+                                <option selected>extra charges</option>
+                                
+                                
+                               
+                              </select>
+                </div>
+                
+             
+
+         <div class="col">
+          <label for="inputPassword4" class="form-label text-gray">Package Duration</label>
+                    <select class="form-control col" name="days" id="category" aria-label="Default select example"  required>   
+                            <option selected>Select Days</option>
+                           
+                            <option>Days</option>
+                            
+                             
+                          </select>
+                </div>
+
+
+          <div class="col-sm-12">
+        <label for="inputPassword4" class="form-label text-gray">Images</label>
+            <input name="images" type="file" class="form-control" placeholder="extra" required>
+        </div>
+
+ 
+    {# <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col ">
+                    <input name="flightname" type="text" multiple class="form-control " placeholder="flightname" required>
+                </div>
+
+            </div> #}
+
+                      
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+
+
+                <button style="margin-left: 10px; " type="submit " class="mt-2 btn btn-secondary ">Add Package</button>
+        </form>
+
+
+
+
+        </div>
+
+        </form>
+        {% endblock %} {% block script %}
+        <script>
+            function changeSubCategory(id) {
+                removeAll(document.getElementById("categorynamenew"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("categorynamenew");
+            
+                
+                select.appendChild(option);
+
+
+                var catid = id;
+
+                {% for i in subcat %}
+                if (catid == {{i[2]}}) {
+                
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("categorynamenew");
+                    select.appendChild(option);
+                    
+
+                } {% endfor %}}
+
+
+            function updatedeparture(idd) {
+                removeAll(document.getElementById("departuredate"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("departuredate");
+                select.appendChild(option);
+
+
+                var catid = idd;
+
+                {% for i in flight %}
+                if (catid == {{i[9]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[5]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("departuredate");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+
+
+
+            function extracharge(idd2) {
+                removeAll(document.getElementById("extracharges"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("extracharges");
+                select.appendChild(option);
+
+
+                var catid = idd2;
+
+                {% for i in extra2 %}
+                if (catid == {{i[1]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[5]}}";
+                    option.value = "{{i[1]}}";
+                    var select = document.getElementById("extracharges");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+
+            
+            
+
+            
+
+             function updatedprice(idd) {
+                removeAll(document.getElementById("price"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("price");
+                select.appendChild(option);
+
+
+                var catid = idd;
+
+                {% for i in flight %}
+                if (catid == {{i[9]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[12]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("price");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+
+
+
+            
+
+
+            
+
+            function removeAll(selectBox) {
+                while (selectBox.options.length > 0) {
+                    selectBox.remove(0);
+                }
+            }
+
+
+             function updatefilghts(value){
+                removeAll(document.getElementById("flight"));
+                var option = document.createElement("option");
+                option.text = "Select Flight";
+                option.value = "";
+                var select = document.getElementById("flight");
+                select.appendChild(option);
+
+                var catvalue = value;
+
+
+                {% for i in airportname %}
+                if(catvalue == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("flight");
+                    select.appendChild(option);
+
+                }
+                {% endfor %}}
+
+
+
+        function updatefilghtsname(value2){
+                removeAll(document.getElementById("flightname"));
+                var option = document.createElement("option");
+                option.text = "Select Flight";
+                option.value = "";
+                var select = document.getElementById("flightname");
+                select.appendChild(option);
+
+                var catvalue = value2;
+
+
+                {% for i in flightname %}
+                if(catvalue == {{i[3]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[4]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("flightname");
+                    select.appendChild(option);
+
+                }
+                {% endfor %}}
+
+
+
+
+         function updatefilghtsnumber(value3){
+                removeAll(document.getElementById("flightnumber"));
+                var option = document.createElement("option");
+                option.text = "Select Flight";
+                option.value = "";
+                var select = document.getElementById("flightnumber");
+                select.appendChild(option);
+
+                var catvalue = value3;
+
+
+                {% for i in flightnumber %}
+                if(catvalue == {{i[4]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[5]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("flightnumber");
+                    select.appendChild(option);
+
+                }
+                {% endfor %}}
+
+             function changehotel(id) {
+                removeAll(document.getElementById("hotel"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("hotel");
+                select.appendChild(option);
+
+
+                var catid = id;
+
+                {% for i in hotel %}
+                if (catid == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[3]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("hotel");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+
+            function changeprice(id) {
+                removeAll(document.getElementById("hotelprice"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("hotelprice");
+                select.appendChild(option);
+
+
+                var catid = id;
+
+                {% for i in rooms %}
+                if (catid == {{i[4]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[5]}}";
+                    option.value = "{{i[4]}}";
+                    var select = document.getElementById("hotelprice");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+
+
+            function updatedeparture(idd) {
+                removeAll(document.getElementById("departuredate"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("departuredate");
+                select.appendChild(option);
+
+
+                var catid = idd;
+
+                {% for i in flight %}
+                if (catid == {{i[9]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[5]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("departuredate");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+             
+        
+        
+        
+        </script>
+        {% endblock %}

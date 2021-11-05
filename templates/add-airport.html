@@ -1,0 +1,189 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="content-wrapper">
+
+    <div class="col-sm-9 text-white ">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+        <div class="alert alert-secondary mt-3 text-center" role="alert">
+            Add Airpor Name
+        </div>
+
+
+
+        <form method="POST" action="/add-flight" enctype="multipart/form-data">
+
+            <div class="col-sm-6">
+                <label for="" class="text-gray"> Country</label>
+
+                <select required class="form-control col" name="airportcountry">   
+            <option selected>Airpor Country Name </option>
+            {% for i in data %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="" class="text-gray"> Airport Name</label>
+
+                <select required class="form-control col" name="airportname">   
+            <option selected>Flight Name</option>
+            {% for i in airportname %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="" class="text-gray"> flight name</label>
+
+                <select required class="form-control col" name="flightname">   
+            <option selected>Flight Name</option>
+            {% for i in airportname %}
+            <option value="{{i[0]}} ">{{i[4]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+
+
+
+
+
+
+
+            {#
+            <div class="row mt-1" style="margin-left:5px ;">
+                <div class="col">
+                    <label for="" class="text-gray"> country</label>
+
+                    <select class="form-control col" name="country" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>   
+                            <option selected>Country</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+                <div class="col ">
+                    <select class="form-control col " name="city" id="categorynamenew" ; aria-label="Default select example " required>
+                           
+                                <option selected> City</option>
+                                
+                                
+                               
+                              </select>
+                </div>
+            </div> #}
+
+            <div class="col-sm-6">
+                <label for="" class="text-gray"> Departure City</label>
+
+                <select class="form-control col" name="departurecity" id="category" aria-label="Default select example" required>   
+            <option selected>city</option>
+            {% for i in subcat %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+
+
+            <div class="col-sm-6">
+                <label for="" class="text-gray"> Arrival City</label>
+
+                <select class="form-control col" name="arrivalcity" id="category" aria-label="Default select example" required>   
+            <option selected>city</option>
+            {% for i in subcat %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col-sm-12 ">
+                    <label for="" class="text-gray"> Departure Time</label>
+                    <input name="departuretime" type="datetime-local" class="form-control " placeholder="" required>
+                </div>
+
+            </div>
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col-sm-12 ">
+                    <label for="" class="text-gray"> Arrival Time</label>
+                    <input name="arrivaltime" type="datetime-local" class="form-control " placeholder="" required>
+                </div>
+
+            </div>
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col-sm-12 ">
+                    <label for="" class="text-gray"> duration</label>
+                    <input name="duration" type="text" class="form-control " placeholder="duration" required>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+
+
+                <button style="margin-left: 10px; " type="submit " class="mt-2 btn btn-secondary ">Add flight</button>
+        </form>
+
+
+
+
+        </div>
+
+        </form>
+        {% endblock %} {% block script %}
+        <script>
+            function changeSubCategory(id) {
+                removeAll(document.getElementById("categorynamenew"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("categorynamenew");
+                select.appendChild(option);
+
+
+                var catid = id;
+
+                { %
+                    for i in subcat %
+                }
+                if (catid == {
+                        {
+                            i[2]
+                        }
+                    }) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("categorynamenew");
+                    select.appendChild(option);
+
+                } { % endfor %
+                }
+            }
+
+            function removeAll(selectBox) {
+                while (selectBox.options.length > 0) {
+                    selectBox.remove(0);
+                }
+            }
+        </script>
+        {% endblock %}

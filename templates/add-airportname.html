@@ -1,0 +1,105 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="content-wrapper">
+
+    <div class="col-sm-9 text-white ">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+        <div class="alert alert-secondary mt-3 text-center" role="alert">
+            Add Airport Name
+        </div>
+
+
+
+        <form method="POST" action="/add-airport" enctype="multipart/form-data">
+
+
+            <div class="row mt-1" style="margin-left:5px ;">
+                <div class="col">
+
+                    <select class="form-control col" name="country" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>   
+                            <option selected>Country</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+                <div class="col">
+                    <select class="form-control col " name="city" id="categorynamenew" ; aria-label="Default select example" required>
+                           
+                                <option selected> City</option>
+                                
+                                
+                               
+                              </select>
+                </div>
+            </div>
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col-sm-12 ">
+                    <input name="airportname" type="text" class="form-control " placeholder="Airport Name" required>
+                </div>
+
+            </div>
+
+
+            
+
+            
+
+            
+            
+
+           
+
+
+
+
+
+
+
+
+                <button style="margin-left: 10px; " type="submit " class="mt-2 btn btn-secondary ">Flight</button>
+        </form>
+
+
+
+
+        </div>
+
+        </form>
+        {% endblock %} {% block script %}
+        <script>
+            function changeSubCategory(id) {
+                removeAll(document.getElementById("categorynamenew"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("categorynamenew");
+                select.appendChild(option);
+
+
+                var catid = id;
+
+                {% for i in subcat %}
+                if (catid == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("categorynamenew");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+            function removeAll(selectBox) {
+                while (selectBox.options.length > 0) {
+                    selectBox.remove(0);
+                }
+            }
+        </script>
+        {% endblock %}

@@ -1,0 +1,28 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+Edit City
+</p>
+    <form action='/edit-city' method="POST" class="row g-3 mt-4" style="margin-left: 20px;">
+                    <input  type="text" class="form-control"  value="{{varr[0]}}" name="idd" placeholder="" hidden>
+
+            <div class="w-25 mx-auto d-block">
+            <label  class="form-label">Name</label>
+            <input type="text" class="form-control"  value="{{varr[1]}}" name="name" placeholder="Cutomer Name">
+
+                <button  type="submit " class="mt-3 mx-auto d-block dashboard-btn-1">Add Country</button>
+
+            </div>
+
+    </form></div></div></div>
+
+
+
+
+
+
+{% endblock %}

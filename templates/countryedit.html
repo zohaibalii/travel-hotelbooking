@@ -1,0 +1,118 @@
+{% extends "basic.html" %} {% block title %} {% endblock %} {% block content %}
+
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+Edit Country
+</p>
+
+
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+
+
+        <div class="mt-5"></div>
+        <form method="POST" action="/edit-country" enctype="multipart/form-data">
+  <div class="col-sm-6 mb-2">
+                    <input name="sno" value="{{varr[0]}}" type="text" class="form-control" placeholder="" required hidden>
+                </div>
+
+        <div class="row mt-1" >
+
+                <div class="col-sm-6 mb-2">
+                    <label>Name</label>
+                    <input name="name" value="{{varr[1]}}" type="text" class="form-control" placeholder="Add New Countrt" required>
+                </div>
+
+
+
+                <div class="col-sm-6 mb-2">
+                                        <label>Visa Requirements</label>
+                    <input name="visareq" value="{{varr[3]}}" type="text" class="form-control" placeholder="visa requirements" required>
+                </div>
+
+                <div class="col-sm-6 mb-2">
+                                        <label>Language</label>
+                    <input name="language" value="{{varr[4]}}" type="text" class="form-control" placeholder="language" required>
+                </div>
+
+
+                <div class="col-sm-6 mb-2">
+                                        <label>Currency</label>
+                    <input name="currency" value="{{varr[5]}}" type="text" class="form-control" placeholder="currency" required>
+                </div>
+
+
+                <div class="col-sm-6 mb-2">
+                                        <label>Total Area</label>
+                    <input name="area" value="{{varr[6]}}" type="text" class="form-control" placeholder="area" required>
+                </div>
+
+                <div class="col-sm-6 mb-2">
+                                        <label>images</label>
+                    <input  id="files"name="cimage" type="file" multiple class="form-control " value="../static/imaages/{{varr[7]}}" placeholder="image" required>
+                </div>
+
+            <div class="col-sm-6 mb-2">
+                                    <label>Description</label>
+  <textarea name="des"  class="form-control" placeholder="Leave a Description here" id="floatingTextarea2" style="height: 100px">value="{{varr[2]}}"</textarea>
+
+</div>
+                       <div class="col-sm-6 mb-2 mt-3">
+
+                <button  type="submit " class="mt-5 ml-3 dashboard-btn-1">Add Country</button>
+            </div>
+        </div>
+
+
+</form></div></div></div>
+
+
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+$(document).ready(function() {
+  if (window.File && window.FileList && window.FileReader) {
+    $("#files").on("change", function(e) {
+      var files = e.target.files,
+        filesLength = files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var f = files[i]
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"remove\">Remove image</span>" +
+            "</span>").insertAfter("#files");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+          
+          // Old code here
+          /*$("<img></img>", {
+            class: "imageThumb",
+            src: e.target.result,
+            title: file.name + " | Click to remove"
+          }).insertAfter("#files").click(function(){$(this).remove();});*/
+          
+        });
+        fileReader.readAsDataURL(f);
+      }
+    });
+  } else {
+    alert("Your browser doesn't support to File API")
+  }
+});
+</script>
+{% endblock %}

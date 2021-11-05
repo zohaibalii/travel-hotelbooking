@@ -1,0 +1,102 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+<!-- End of Topbar -->
+
+
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+All Airport Countries List</p>
+
+
+                {% if error|length > 1 %}
+                <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-danger">Alert </span> {{ error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endif %} {% if message|length > 1 %}
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-success">Alert </span> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                {% endif %}
+                <div class="card">
+
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row"></div>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Country Name</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>All Cities</th>
+                                        <th>Detail</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for i in country %}
+                                    <tr>
+                                        <td>{{i[1]}}</td>
+
+                                        <td><a href="/edit-country?id={{i[0]}}"><button class="btn btn-outline-danger">Edit</button></a></td>
+
+
+                                        <td>
+                                            <form action='/all_delete?id={{i[0]}}' method="post">
+                                                <a href=""><button class="btn btn-outline-danger">Delete</button></a>
+
+                                            </form>
+                                        </td>
+
+                                        <td>
+                                            <form action='/city-list-country?id={{i[0]}}' method="post">
+                                                <a href=""><button class="btn btn-outline-danger">All Cities</button></a>
+
+                                            </form>
+                                        </td>
+
+                                        <td>
+                                            <form action='/admin-country-detail?id={{i[0]}}' method="post">
+                                                <a href=""><button class="btn btn-outline-danger">{{i[1]}}</button></a>
+
+                                            </form>
+                                        </td>
+
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+
+                                </tfoot>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+            </div>
+
+            <!-- /.card -->
+        </div>
+    </div>
+    </div>
+</section>
+</form>
+
+
+
+<!-- /.container-fluid -->
+
+{%endblock%}

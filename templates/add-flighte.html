@@ -1,0 +1,93 @@
+{% extends "basic.html" %} {% block title %} Add City {% endblock %} {% block content %}
+<div class="content-wrapper ">
+
+    <div class="col-sm-9 text-white ">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+        <div class="alert alert-primary text-center mt-5" role="alert">
+            Add New City
+        </div>
+
+        <div class="mt-5"></div>
+        <form method="POST" action="/add-flight" enctype="multipart/form-data">
+
+
+            <div class="col-sm-6">
+                <label for="" class="text-gray"> Country</label>
+
+                <select required class="form-control col" name="airportcountry">   
+            <option selected>Airpor Country Name </option>
+            {% for i in data %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+
+            <div class="col-sm-6">
+                <label for="" class="text-gray"> Start from</label>
+
+                <select required class="form-control col" name="airport">   
+            <option selected>Airport Name</option>
+            {% for i in airportname %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="" class="text-gray"> Start from</label>
+
+                <select required class="form-control col" name="departurecity" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);">   
+            <option selected>country</option>
+            {% for i in city %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+
+            <div class="col-sm-6">
+                <input name="departure" type="datetime-local" class="form-control" placeholder="" required>
+            </div>
+
+    </div>
+
+    <div class="row mt-1" style="margin-left:5px ;">
+        <div class="col-sm-6">
+            <input name="arrival" type="datetime-local" class="form-control" placeholder="" required>
+        </div>
+
+    </div>
+
+    <div class="row mt-1" style="margin-left:5px ;">
+        <div class="col-sm-6">
+            <input name="duration" type="text" class="form-control" placeholder="" required>
+        </div>
+
+    </div>
+
+    <div class="col-sm-6">
+        <label for="" class="text-gray">Arrival City</label>
+
+        <select class="form-control col" name="arrivalcity" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>   
+            <option selected>country</option>
+            {% for i in city %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+    </div>
+
+    <div>
+        <button style="margin-left: 10px; " type="submit " class="mt-2 btn btn-secondary ">Add Flight</button>
+    </div>
+
+
+    </form>
+</div>
+</div>
+{% endblock %}

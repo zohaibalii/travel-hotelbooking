@@ -1,0 +1,62 @@
+{% extends "layout.html" %} {% block body %}
+<div class="home-bg-3">
+
+<div class="container pt-5 ">
+<div class="row">
+
+    {% for i in hotel %}
+    <div class="col-sm-3">
+        <div class="home-box-right-1">
+            <div class="card">
+                <div class="card-body px-0 py-0">
+                    <div class="packages-span-div-1"><span class="packages-span-label-tag">New</span></div>
+                    </div>
+            <img src="../static/images/{{i[4]}}" class="img-fluid">
+            
+            
+
+        </div>
+                    <div class="container">
+                        <p class="home-box-1-text-1"> {{i[1]}}
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </p>
+
+                        <small>Marina di Ragusa, Sicily, Italy</small>
+
+                        <p class="mb-0 packages-box-text-1">From
+                            <span class="mb-0 font-weight-bold">$ 830</span>
+                        </p>
+
+                        <div class="packages-box-1-des">
+                            <p class="mb-0"><i class="fa fa-calendar"></i> 8 days/7 nights, All Inclusive</p>
+                            <p class="mb-0"><i class="fa fa-plane"></i> London Luton</p>
+
+                        </div>
+
+                        <button class="package-box-btn-1" onclick="viewchannel({{i[0]}})">Check detail</button>
+
+
+
+                        {# <button onclick="viewchannel({{i[0]}})" class="package-box-btn-1 mt-2">Book Now</button> #}
+</div></div></div>
+{% endfor %} 
+</div></div></div>
+{%endblock%}
+{% block script %}
+<script>
+    function viewchannel(id) {
+
+        console.log(id);
+
+        var id = id.toString();
+        var date = new Date();
+        date.setTime(date.getTime() + (1 * 1 * 60 * 60 * 1000));
+        document.cookie = "id = " + id + "; expires=" + date.toGMTString();
+        window.location.href = "/user-hotel-detail";
+    }
+</script>
+{% endblock %}

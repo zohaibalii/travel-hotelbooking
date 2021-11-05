@@ -1,0 +1,50 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+Hotel List</p>
+
+    <table id="example1" class="mt-5 table table-bordered table-striped">
+        <thead>
+            <tr>
+
+                <th>Hotel Name</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>view hotel</th>
+
+
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for i in data %}
+            <tr>
+
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+                <td>{{i[3]}}</td>
+                <td>
+                    <form action='/delete-hotel?id={{i[0]}}' method="post">
+                        <a href=""><button class="btn btn-outline-danger">Delete</button></a>
+
+                    </form>
+                </td>
+
+                <td><a href="/edit-hotel?id={{i[0]}}"><button class="btn btn-outline-danger">Edit</button></a></td>
+
+                <td><a href="/hotel-view?id={{i[0]}}"><button class="btn btn-outline-danger">view</button></a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+</table></div></div></div>
+
+{%endblock%}

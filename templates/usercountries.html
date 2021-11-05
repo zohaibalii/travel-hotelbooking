@@ -1,0 +1,12 @@
+{% extends "userbasic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %} {% for i in allcountries %}
+
+<div class="card " style="width: 18rem; ">
+    <img src="static/images/{{i[3]}}" class="card-img-top " alt="...">
+    <h5 class="card-title">{{i[1]}}</h5>
+
+    <a href="/countrieshotel/{{i[0]}}" class="btn btn-primary">Check Hotels</a> {% endfor %}
+</div>
+
+
+
+{% endblock %}

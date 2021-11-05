@@ -1,0 +1,40 @@
+{% extends "basic.html" %} {% block title %} Add City {% endblock %} {% block content %}
+
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+Add City</p>
+
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+
+
+        <div class="mt-5"></div>
+        <form method="POST" action="/add-city" enctype="multipart/form-data">
+<div class="row">
+            <div class="col-sm-6">
+
+                <select class="form-control col" name="country" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);">   
+            <option selected>country</option>
+            {% for i in data %}
+            <option value="{{i[0]}} ">{{i[1]}}</option>
+            {% endfor %}  
+          </select>
+            </div>
+
+                <div class="col-sm-6">
+                    <input name="city" type="text" class="form-control" placeholder="Add New City">
+                </div>
+
+
+
+                <button  type="submit " class="mt-2 dashboard-btn-1 mx-auto d-block">Add City</button>
+</div></form></div></div></div>
+
+{% endblock %}

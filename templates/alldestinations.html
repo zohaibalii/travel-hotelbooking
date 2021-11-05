@@ -1,0 +1,54 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="home-bg-3">
+
+
+    <div class="container ">
+
+<p class="pt-4  country-heading-1">All Destinations</p>
+
+
+<div class="row pt-3">
+
+     {% for i in data %}
+
+
+        <div class="col-sm-4 mb-3  " onclick="viewchannel({{i[0]}})" >
+            <div class="border ">
+              <span>
+                <span class="home-name-tag">{{i[1]}}</span>
+
+
+            <img src="../static/images/{% if i[7].split(',')[0] == '' %}{{i[7].split(',')[1]}}{%else%}{{i[7].split(',')[0]}}{%endif%}" class="img-fluid country-img-1">
+</span>
+        {# <button class="btn btn-outline-danger mx-auto d-block mt-2">Book Now</button> #}
+<!--        <button class="package-box-btn-1" >Check detail</button>-->
+
+
+
+</div>
+        </div>
+
+   {% endfor %}
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}
+{% block script %}
+        <script>
+            function viewchannel(id) {
+
+                console.log(id);
+
+                var id = id.toString();
+                var date = new Date();
+                date.setTime(date.getTime() + (1 * 1 * 60 * 60 * 1000));
+                document.cookie = "id = " + id + "; expires=" + date.toGMTString();
+                window.location.href = "/country-detail";
+            }
+        </script>
+
+{% endblock %}

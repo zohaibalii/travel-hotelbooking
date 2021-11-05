@@ -1,0 +1,26 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+
+<div class="content-wrapper">
+
+    <form action='/edit-slider' method="POST" class="row g-3 mt-4" style="margin-left: 20px;">
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Title</label>
+            <input type="text" class="form-control" id="inputPassword4" value="{{varr[0]}}" name="sno" placeholder="">
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Title</label>
+            <input type="text" class="form-control" id="inputPassword4" value="{{varr[1]}}" name="title" placeholder="">
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Describtion</label>
+            <input type="text" class="form-control" id="inputPassword4" value="{{varr[2]}}" name="des" placeholder="Descrbition">
+        </div>
+
+        <div>
+            <input type="submit" value="save change" name="" id="" style="margin-left: 20px;">
+        </div>
+
+</div>
+{% endblock %}

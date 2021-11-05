@@ -1,0 +1,116 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="content-wrapper">
+
+    <div class="col-sm-9 text-white ">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+        <div class="alert alert-secondary mt-3 text-center" role="alert">
+            Add New Hotel
+        </div>
+
+
+
+        <form method="POST" action="/add-hotel" enctype="multipart/form-data">
+            <div class="row mt-1" style="margin-left:5px ;">
+                <div class="col">
+                    <input name="pname" type="text" class="form-control" placeholder="Product Name">
+                </div>
+                <div class="col">
+                    <input type="text" name="pdesc" class="form-control" placeholder="Product Description">
+                </div>
+            </div>
+
+            <div class="row mt-1" style="margin-left:5px ;">
+                <div class="col">
+
+                    <select class="form-control col" name="category" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);">   
+                            <option selected>Category</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+                <div class="col ">
+                    <select class="form-control col " name="scategory" id="categorynamenew" ; aria-label="Default select example ">
+                           
+                                <option selected> Sub Category</option>
+                                
+                                
+                               
+                              </select>
+                </div>
+            </div>
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col ">
+                    <input name="pimage" type="file" class="form-control" multiple="true" placeholder="Select Images">
+                </div>
+                <div class="col ">
+                    <input name="price" type="text" class="form-control " placeholder="price">
+                </div>
+            </div>
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col ">
+                    <input name="unit" type="text " class="form-control " placeholder="Unit">
+                </div>
+                <div class="col ">
+                    <input name="stockqty" type="text " class="form-control " placeholder="Stock Quanity">
+                </div>
+            </div>
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col ">
+                    <input name="discountstatus" type="text " class="form-control" placeholder="Discount Status ">
+                </div>
+                <div class="col ">
+                    <input name="ddn" type="text" class="form-control" placeholder="ddn">
+                </div>
+            </div>
+
+            <button style="margin-left: 10px; " type="submit " class="mt-2 btn btn-secondary ">Add Product</button>
+        </form>
+
+
+
+
+    </div>
+
+    </form>
+    {% endblock %} {% block script %}
+    <script>
+        function changeSubCategory(id) {
+            removeAll(document.getElementById("categorynamenew"));
+            var option = document.createElement("option");
+            option.text = "Select Subcategory";
+            option.value = "";
+            var select = document.getElementById("categorynamenew");
+            select.appendChild(option);
+
+
+            var catid = id;
+
+            { %for i in subcat %}
+            if (catid == {{i[3]}}) {
+                var option = document.createElement("option");
+                option.text = "{{i[1] }}";
+                option.value = "{{i[0]}}";
+                var select = document.getElementById("categorynamenew");
+                select.appendChild(option);
+
+            } {% endfor %}
+            }
+
+        function removeAll(selectBox) {
+            while (selectBox.options.length > 0) {
+                selectBox.remove(0);
+            }
+        }
+    </script>
+    {% endblock %}

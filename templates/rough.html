@@ -1,0 +1,175 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+             Add New Hotel
+ </p>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+
+
+
+
+        <form method="POST" action="/add-hotel" enctype="multipart/form-data">
+
+
+            <div class="row mt-1">
+                <div class="col-sm-6 mb-2">
+                                          <label >Country</label>
+
+                    <select class="form-control col" name="category" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>   
+                            <option selected>Country</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+                <div class="col-sm-6 mb-2">
+                                          <label >City</label>
+
+                    <select class="form-control col " name="scategory" id="categorynamenew" ; onchange="changehotel(this.value);" aria-label="Default select example" required>
+                           
+                                <option selected> City</option>
+                                
+                                
+                               
+                              </select>
+                </div>
+
+
+  <div class="col-sm-6 mb-2">
+                      <label >Hotel Name</label>
+
+                    <input name="hotelname" type="text" multiple class="form-control " placeholder="add hotel" required>
+                </div>
+
+
+
+
+
+
+
+
+
+                         <div class="col-sm-6 mb-2">
+                      <label >img</label>
+
+                    <input  id="files"name="image" type="file" multiple class="form-control " placeholder="image" required>
+                </div>
+
+
+
+
+   <div class="col-sm-6 mb-2">
+                      <label >Describtion</label>
+  <textarea class="form-control" name="des" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px"></textarea>
+</div>
+
+<!-- <div class="field" >
+  <input type="file" id="files" name="files[]" multiple />
+</div> -->
+                          <div class="col-sm-6 mb-2">
+
+                <button type="submit " class="mt-2 dashboard-btn-1 mx-auto d-block">Add Hotel</button>
+
+
+
+                          </div></div></form></div></div></div>
+
+
+        {% endblock %} {% block script %}
+        <script>
+            function changeSubCategory(id) {
+                removeAll(document.getElementById("categorynamenew"));
+                var option = document.createElement("option");
+                option.text = "Select City";
+                option.value = "";
+                var select = document.getElementById("categorynamenew");
+                select.appendChild(option);
+
+
+                var catid = id;
+
+                {% for i in subcat %}
+                if (catid == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("categorynamenew");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+            function removeAll(selectBox) {
+                while (selectBox.options.length > 0) {
+                    selectBox.remove(0);
+                }
+            }
+
+
+            function changehotel(id) {
+                removeAll(document.getElementById("hotel"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("hotel");
+                select.appendChild(option);
+
+
+                var catid = id;
+
+                {% for i in hotel %}
+                if (catid == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[3]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("hotel");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+        </script>
+        
+<script>
+
+$(document).ready(function() {
+  if (window.File && window.FileList && window.FileReader) {
+    $("#files").on("change", function(e) {
+      var files = e.target.files,
+        filesLength = files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var f = files[i]
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"remove\">Remove image</span>" +
+            "</span>").insertAfter("#files");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+          
+          // Old code here
+          /*$("<img></img>", {
+            class: "imageThumb",
+            src: e.target.result,
+            title: file.name + " | Click to remove"
+          }).insertAfter("#files").click(function(){$(this).remove();});*/
+          
+        });
+        fileReader.readAsDataURL(f);
+      }
+    });
+  } else {
+    alert("Your browser doesn't support to File API")
+  }
+});
+</script>
+        {% endblock %}

@@ -1,0 +1,65 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+<!-- End of Topbar -->
+
+<!-- Page Heading -->
+
+<!-- Page Heading -->
+<div class="content-wrapper">
+
+    <table id="example1" class="mt-5 table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Hotel Name</th>
+                <th>Price</th>
+                <th>Bed</th>
+
+                <th>Delete</th>
+
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for i in varr %}
+            <tr>
+
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+                <td>{{i[3]}}</td>
+                <td>{{i[4]}}</td>
+                <td>{{i[5]}}</td>
+                <td>{{i[6]}}</td>
+
+                {#
+                <td><a href="/hotel-view?id={{i[0]}}"><button class="btn btn-outline-danger">View</button></a></td> #}
+                <td>
+                    <form action='/delete-rooms?id={{i[0]}}' method="post">
+                        <a href=""><button class="btn btn-outline-danger">Delete</button></a>
+
+                    </form>
+                </td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+        </tfoot>
+    </table>
+</div>
+
+<!-- /.card-body -->
+
+
+<!-- /.card -->
+
+
+
+<!-- /.container-fluid -->
+
+{%endblock%}

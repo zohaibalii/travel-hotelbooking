@@ -1,0 +1,456 @@
+{% extends "basic.html" %} {% block head %} {{ super() }} {% endblock %} {% block content %}
+<div class="content-wrapper ">
+<div class="container pt-5">
+<div class="col-sm-11 text-white bg-white px-3 py-3 mx-auto d-block  shadow">
+<p class="dashboard-heading-1">
+Edit Tour
+</p>
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-primary text-center" role="alert">
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+
+
+<div class="container">
+
+        <form method="POST" action="/edit-tour" enctype="multipart/form-data">
+
+                   <input value="{{tour_data[0]}}" name="sno" type="text" multiple class="form-control " placeholder="Add People Limit" required hidden>
+            <div class="row mt-1" >
+
+                <div class="col-sm-12">
+                <label  class="form-label text-gray">Country</label>
+
+                    <select class="form-control" name="country" id="" aria-label="Default select example" required>   
+                            <option selected>{{tour_data[1]}}</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+
+                    
+                </div>
+                <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray"> Days</label>
+                    <select class="form-control" name="days" >   
+                            <option selected>{{tour_data[2]}}</option>
+                            
+                            <option>7 days </option>
+                            
+                          </select>
+                </div>
+
+                <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">Cities</label>
+                    <input value="{{tour_data[3]}}" name="cities" type="text" multiple class="form-control " placeholder="Add All Cities" required>
+                </div>
+
+                
+
+            </div>
+
+                
+            </div>
+
+           <div class="row mt-1 " style="margin-left:5px ; ">
+                <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">places</label>
+                    <input value="{{tour_data[4]}}" name="place" type="text" multiple class="form-control " placeholder="Add All Tour Places" required>
+                </div>
+
+                <div class="col-sm-6 ">
+                <label  for="inputPassword4" class="form-label text-gray"> People Limit</label>
+                    <input value="{{tour_data[5]}}" name="plimit" type="text" multiple class="form-control " placeholder="Add People Limit" required>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-left:5px ;">
+            
+            <div class= "col-sm-4 mt-2">
+            <label for="inputPassword4" class="form-label text-gray">Day One Detail</label>
+            
+           
+                 <textarea class="form-control " name="day1" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px"> value="{{tour_data[6]}}"</textarea>
+            </div>
+            
+
+              <div class= "col-sm-4 mt-2">
+            <label for="inputPassword4" class="form-label text-gray">Day 2 Detail</label>
+            
+           
+                 <textarea class="form-control " name="day2" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px"> value="{{tour_data[7]}}"</textarea>
+            </div>
+
+
+
+              <div class= "col-sm-4 mt-2">
+            <label for="inputPassword4" class="form-label text-gray">Day 3 Detail</label>
+            
+           
+                 <textarea class="form-control " name="day3" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px"> value="{{tour_data[8]}}"</textarea>
+            </div>
+
+
+
+              <div class= "col-sm-4 mt-2">
+            <label for="inputPassword4" class="form-label text-gray">Day 4 Detail</label>
+            
+           
+                 <textarea class="form-control " name="day4" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px"> value="{{tour_data[9]}}"</textarea>
+            </div>
+
+
+              <div class= "col-sm-4 mt-2">
+            <label for="inputPassword4" class="form-label text-gray">Day 5 Detail</label>
+            
+           
+                 <textarea class="form-control " name="day5" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px"> value="{{tour_data[10]}}"</textarea>
+            </div>
+
+
+
+              <div class= "col-sm-4 mt-2">
+            <label for="inputPassword4" class="form-label text-gray">Day 6 Detail</label>
+            
+           
+                 <textarea class="form-control " name="day6" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px">value="{{tour_data[11]}}" </textarea>
+            </div>
+
+
+              <div class= "col-sm-6 mt-2 mb-2">
+            <label for="inputPassword4" class="form-label text-gray">Day 7 Detail</label>
+            
+           
+                 <textarea class="form-control " name="day7" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px"> value="{{tour_data[12]}}"</textarea>
+            </div>
+
+             <div class= "col-sm-6 mt-2 mb-2">
+            <label for="inputPassword4" class="form-label text-gray">Departure</label>
+            
+           
+                 <textarea class="form-control " name="dpoint" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 100px"> value="{{tour_data[13]}}"</textarea>
+            </div>
+
+            <div class= "col-sm-6 mt-2 mb-2">
+            <label for="inputPassword4" class="form-label text-gray">Departure Time</label>
+                    <input value="{{tour_data[14]}}"  name="dtime" type="datetime-local" multiple class="form-control "  required>
+                </div>
+
+
+            <div class= "col-sm-6 mt-2 mb-2">
+            <label for="inputPassword4" class="form-label text-gray">Return Details</label>
+            
+           
+                 <textarea class="form-control " name="returndetail" placeholder="Hotel Describtion " id="floatingTextarea2" style="height: 50px">value="{{tour_data[15]}}" </textarea>
+            </div>
+
+
+            
+
+
+              
+ 
+
+                <div class= "col-sm-12 mt-2 mb-2">
+                    <input  id="files"name="images" type="file" multiple class="form-control " placeholder="images" required>
+                </div>
+
+
+
+
+         <div class="col">
+        <label for="inputPassword4" class="form-label text-gray">country</label>
+
+                    <select class="form-control col" name="dcountry" id="category" aria-label="Default select example" onchange="changeSubCategory(this.value);" required>   
+                            <option selected>{{tour_data[17]}}</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+        <div class="col ">
+        <label for="inputPassword4" class="form-label text-gray">City</label>
+            <select class="form-control col " name="dcity" id="categorynamenew1" ; onchange="updatefilghts(this.value)" aria-label="Default select example " required>
+             <option selected> {{tour_data[18]}}</option>
+                                
+            </select>
+        </div>
+            
+
+
+         <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray"> Airport Name</label>
+                    <input value="{{tour_data[21]}}" name="airportname" type="text" multiple class="form-control " placeholder="Airport Name" required>
+                </div>
+
+    <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray"> flight name</label>
+                    <input value="{{tour_data[22]}}" name="flightname" type="text" multiple class="form-control " placeholder="Add Flight Name" required>
+                </div>
+
+    <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">Flight Number</label>
+                    <input value="{{tour_data[23]}}" name="flightnumber" type="text" multiple class="form-control " placeholder="Flight Number" required>
+                </div>
+
+
+
+
+
+          
+            
+
+         <div class="col-sm-6">
+        <label for="inputPassword4" class="form-label text-gray">Arrival Country</label>
+
+                    <select class="form-control col" name="acountry" id="acountry" aria-label="Default select example" onchange="arrivalcountry(this.value)" required>   
+                            <option selected>{{tour_data[19]}}</option>
+                            {% for i in data %}
+                            <option value="{{i[0]}} ">{{i[1]}}</option>
+                            {% endfor %}  
+                          </select>
+                </div>
+
+        <div class="col-sm-6 ">
+        <label for="inputPassword4" class="form-label text-gray">Arrival City</label>
+            <select class="form-control col " name="acity" id="acityy" aria-label="Default select example " required>
+             <option selected> {{tour_data[20]}}</option>
+                                
+            </select>
+        </div>
+           
+
+
+
+        <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">Flight Price</label>
+                    <input value="{{tour_data[24]}}" name="flightprice" type="text" multiple class="form-control " placeholder="flight price" required>
+                </div>
+
+
+        <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">package Price</label>
+                    <input value="{{tour_data[25]}}" name="packageprice" type="text" multiple class="form-control " placeholder="package price" required>
+                </div>
+
+
+
+         <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">Transfer Price</label>
+                    <input value="{{tour_data[26]}}" name="transfer" type="text" multiple class="form-control " placeholder="transfer price" required>
+                </div>
+
+
+         <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">Visa Price</label>
+                    <input value="{{tour_data[27]}}" name="visa" type="text" multiple class="form-control " placeholder="visa price" required>
+                </div>
+
+
+         <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">Insurance Price</label>
+                    <input value="{{tour_data[28]}}" name="insurance" type="text" multiple class="form-control " placeholder="insurance price" required>
+                </div>
+
+
+         <div class="col-sm-6 ">
+                <label for="inputPassword4" class="form-label text-gray">profit Price</label>
+                    <input value="{{tour_data[29]}}" name="profit" type="text" multiple class="form-control " placeholder="profit price" required>
+                </div>
+
+
+
+
+        
+
+
+        
+            
+
+            <div class="row mt-1 " style="margin-left:5px ; ">
+
+
+            <button type="submit " class="mt-2 dashboard-btn-1 mx-auto d-block">Update Tour</button>
+
+</div></div></div></div></div>
+
+
+
+        {% endblock %} {% block script %}
+        
+        
+        
+<script>
+
+$(document).ready(function() {
+  if (window.File && window.FileList && window.FileReader) {
+    $("#files").on("change", function(e) {
+      var files = e.target.files,
+        filesLength = files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var f = files[i]
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"remove\">Remove image</span>" +
+            "</span>").insertAfter("#files");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+          
+          // Old code here
+          /*$("<img></img>", {
+            class: "imageThumb",
+            src: e.target.result,
+            title: file.name + " | Click to remove"
+          }).insertAfter("#files").click(function(){$(this).remove();});*/
+          
+        });
+        fileReader.readAsDataURL(f);
+      }
+    });
+  } else {
+    alert("Your browser doesn't support to File API")
+  }
+});
+
+
+
+
+
+
+
+function changeSubCategory(id) {
+                  removeAll(document.getElementById("categorynamenew1"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("categorynamenew1");
+                select.appendChild(option);
+                var catid = id;
+                {% for i in subcat %}
+                if (catid == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("categorynamenew1");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+
+
+function arrivalcountry(id) {
+                  removeAll(document.getElementById("acityy"));
+                var option = document.createElement("option");
+                option.text = "Select Subcategory";
+                option.value = "";
+                var select = document.getElementById("acityy");
+                select.appendChild(option);
+                var catid = id;
+                {% for i in subcat %}
+                if (catid == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("acityy");
+                    select.appendChild(option);
+
+                } {% endfor %}}
+
+
+
+
+
+
+                 function updatefilghts(value){
+                removeAll(document.getElementById("flight"));
+                var option = document.createElement("option");
+                option.text = "Select Flight";
+                option.value = "";
+                var select = document.getElementById("flight");
+                select.appendChild(option);
+
+                var catvalue = value;
+
+
+                {% for i in airportname %}
+                if(catvalue == {{i[2]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[1]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("flight");
+                    select.appendChild(option);
+
+                }
+                {% endfor %}}
+
+
+
+
+             function updatefilghtsname(value2){
+                removeAll(document.getElementById("flightname"));
+                var option = document.createElement("option");
+                option.text = "Select Flight";
+                option.value = "";
+                var select = document.getElementById("flightname");
+                select.appendChild(option);
+
+                var catvalue = value2;
+
+
+                {% for i in flightname %}
+                if(catvalue == {{i[3]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[4]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("flightname");
+                    select.appendChild(option);
+
+                }
+                {% endfor %}}
+
+
+
+
+             function updatefilghtsnumber(value3){
+                removeAll(document.getElementById("flightnumber"));
+                var option = document.createElement("option");
+                option.text = "Select Flight";
+                option.value = "";
+                var select = document.getElementById("flightnumber");
+                select.appendChild(option);
+
+                var catvalue = value3;
+
+
+                {% for i in flightnumber %}
+                if(catvalue == {{i[4]}}) {
+                    var option = document.createElement("option");
+                    option.text = "{{i[5]}}";
+                    option.value = "{{i[0]}}";
+                    var select = document.getElementById("flightnumber");
+                    select.appendChild(option);
+
+                }
+                {% endfor %}}
+
+
+
+
+
+
+
+                  function removeAll(selectBox) {
+                while (selectBox.options.length > 0) {
+                    selectBox.remove(0);
+                }
+            }
+</script>
+        {% endblock %}
